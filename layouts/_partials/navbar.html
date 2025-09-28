@@ -10,9 +10,9 @@
                 {{ range .Site.Pages.ByWeight }}
                     <li class="nav-item">
                         {{ if (eq .Title $.Title) }}
-                            <a class="nav-link active" href="{{ .Permalink }}">{{ .Title }}</a>
+                            <a class="nav-link active" href="{{ .RelPermalink }}">{{ .Title }}</a>
                         {{ else }}
-                            <a class="nav-link" href="{{ .Permalink }}">{{ .Title }}</a>
+                            <a class="nav-link" href="{{ .RelPermalink }}">{{ .Title }}</a>
                         {{ end }}
                     </li>
                 {{ end }}
