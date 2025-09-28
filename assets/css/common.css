@@ -1,0 +1,151 @@
+/* Defining variables for our color palette */
+:root {
+    --blue: #59a5b1;
+    --p4: #373F51;
+    --dark: #1b1b1e;
+    --shadow : rgba(27, 27, 30, 0.08);
+    --accent: #2b6b6b;
+    --light: color-mix(in srgb, var(--blue) 8%, white);
+    --sp: 1rem;
+    color: var(--dark);
+    --bs-body-line-height: 1.7;
+    --bs-border-radius: 0.5rem;
+}
+
+.bg-light {
+    background-color: var(--light) !important;
+}
+
+.box-shadow {
+    box-shadow: 0 6px 18px  var(--shadow);
+}
+
+.accent {
+    color: var(--accent);
+}
+
+/* Font Styling - Default is headings in sans-serif, paragraph text in serif */
+h1, h2, h3, h4, h5, h6, .lead {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+/* Newsreader font not vertically centered - slight vertical adjustment for buttons */
+a.btn {
+    padding-top: calc(var(--bs-btn-padding-y) + 0.15rem);
+}
+
+p, li, a {
+    --bs-btn-font-family: 'Newsreader', serif !important;
+    font-family: 'Newsreader', serif;
+}
+
+/* Utility Classes for Overriding Font */ 
+
+.sans-font {
+    font-family: 'Noto Sans', sans-serif !important;
+}
+
+.serif-font {
+    font-family: 'Newsreader', serif !important;
+}
+
+.profile-img {
+    max-width: 200px;
+}
+
+/* List styling */
+ul.clean-list li {
+    list-style-type: none;
+    margin-bottom: .35rem;
+    position: relative;
+    padding-left: 1.25rem;
+}
+ul.clean-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-weight: 800;
+}
+
+/* Navbar Styling */
+.navbar-brand a {
+    color: inherit; text-decoration: none;
+}
+
+/* Button Styling */
+.btn-outline-secondary {
+    --bs-btn-color: var(--accent);
+    --bs-btn-border-color: var(--accent);
+    --bs-btn-hover-bg: var(--accent);
+    --bs-btn-hover-border-color: var(--accent);
+    --bs-btn-active-bg: var(--accent);
+    --bs-btn-active-border-color: var(--accent);
+}
+
+/* Card Flipping */
+
+.flip-card {
+    perspective: 5000px;
+}
+
+.card-inner {
+    /*
+    --padding: 0%;
+    position: relative;
+    width: calc(100% - 2 * var(--padding));
+    height: calc(100% - 2 * var(--padding));
+    top: var(--padding);
+    left: var(--padding);
+    */
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.card-front, .card-back {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card-back {
+    transform: rotateY(-180deg);
+}
+
+.flip-card:hover .card-front {
+    transform: rotateY(180deg);
+}
+
+.flip-card:hover .card-back {
+    transform: rotateY(0deg);
+}
+
+.aspect-4x3 {
+    aspect-ratio: 4 / 3;
+}
+
+.spread-list {
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+/* Extra utility classes when needed */
+@media screen and (min-width: 992px) {
+    .w-md-25 {
+        width: 25% !important;
+    }
+}

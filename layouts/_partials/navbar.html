@@ -1,0 +1,22 @@
+<!-- Navbar Partial -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+        <h1 class="navbar-brand mx-auto my-auto"><a href="/">Matt Culhane Consulting</a></h1>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav align-items-between gap-3 ms-auto">
+                {{ range .Site.Pages.ByWeight }}
+                    <li class="nav-item">
+                        {{ if (eq .Title $.Title) }}
+                            <a class="nav-link active" href="{{ .Permalink }}">{{ .Title }}</a>
+                        {{ else }}
+                            <a class="nav-link" href="{{ .Permalink }}">{{ .Title }}</a>
+                        {{ end }}
+                    </li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+</nav>

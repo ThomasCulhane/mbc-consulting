@@ -1,0 +1,24 @@
+<!-- Head Partial -->
+{{ $bootstrap_CSS := resources.GetRemote "https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" | resources.Minify | resources.Fingerprint }}
+{{ $bootstrap_JS := resources.GetRemote "https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" | resources.Minify | resources.Fingerprint }}
+{{ $fonts := resources.GetRemote "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" | resources.Minify | resources.Fingerprint }}
+
+{{ $common := resources.Get "css/common.css" | resources.ExecuteAsTemplate "css/common.css" $ | resources.Minify | resources.Fingerprint }}
+{{/* $favicon := resources.Get "images/favicon_base.png" | resources.Fingerprint */}}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="{{ $fonts.Permalink }}" rel="stylesheet" type="text/css">
+    <link href="{{ $bootstrap_CSS.RelPermalink }}" rel="stylesheet" type="text/css">
+    <link href="{{ $common.RelPermalink }}" rel="stylesheet" type="text/css">
+    <script src="{{ $bootstrap_JS.RelPermalink }}" crossorigin="anonymous"></script>
+    {{/* range (slice 16 32 48 144 512) }}
+        {{ with $favicon.Resize (printf "%dx CatmullRom" .) }}
+            <link rel="icon" type="image/png" sizes="{{ .Width }}x{{ .Height }}" href="{{ .RelPermalink }}">
+        {{ end }}
+    {{ end */}}
+</head>
