@@ -90,14 +90,45 @@ ul.clean-list li::before {
     color: inherit; text-decoration: none;
 }
 
-/* Button Styling */
+/* Button Styling Options */
+body {
+    --bs-primary: var(--accent) !important;
+    --bs-secondary: hsl(10, 70%, 50%) !important;
+    --fill: var(--light);
+    --outline: var(--dark);
+}
+
+
+.btn-outline-primary {
+    --fill: var(--bs-primary);
+    --outline: var(--light);
+}
+
+.btn-primary {
+    --fill: var(--light);
+    --outline: var(--bs-primary);
+}
+
 .btn-outline-secondary {
-    --bs-btn-color: var(--accent);
-    --bs-btn-border-color: var(--accent);
-    --bs-btn-hover-bg: var(--accent);
-    --bs-btn-hover-border-color: var(--accent);
-    --bs-btn-active-bg: var(--accent);
-    --bs-btn-active-border-color: var(--accent);
+    --fill: var(--bs-secondary);
+    --outline: var(--light);
+}
+
+.btn-secondary {
+    --fill: var(--light);
+    --outline: var(--bs-secondary);
+}
+
+.btn {
+    --bs-btn-color: var(--fill);
+    --bs-btn-bg: var(--outline);
+    --bs-btn-border-color: var(--fill);
+    --bs-btn-hover-color: var(--outline);
+    --bs-btn-hover-bg: var(--fill);
+    --bs-btn-hover-border-color: var(--outline);
+    --bs-btn-active-color: var(--outline);
+    --bs-btn-active-bg: var(--fill);
+    --bs-btn-active-border-color: var(--outline);
 }
 
 /* Card Flipping */
