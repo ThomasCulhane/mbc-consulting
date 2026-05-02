@@ -1,19 +1,31 @@
-/* Defining variables for our color palette */
+/* Defining variables for our green-based light color palette */
 :root {
-    --blue: #59a5b1;
-    --p4: #373F51;
-    --dark: #1b1b1e;
-    --shadow : rgba(27, 27, 30, 0.08);
-    --accent: #2b6b6b;
-    --light: color-mix(in srgb, var(--blue) 8%, white);
+
+    /* Modified hues */
+    --light: hsl(140, 55%, 98%);          /* very near-white, subtle green tint for page background */
+    --md-light: hsl(140, 55%, 95%);        /* slightly darker than --light for block elements */
+    --md-dark: hsl(140, 55%, 23%);     /* stronger/darker accent for headings and CTAs */
+
+    /* Neutrals */
+    --dark: hsl(140, 55%, 10%);
+
+    /* Shadows and accents */
+    --shadow: hsla(0, 0%, 11%, 0.10);     /* slightly stronger shadow */
+    --accent: var(--md-dark);
+
+
+    /* Spacing / bootstrap overrides */
     --sp: 1rem;
-    color: var(--dark);
     --bs-body-line-height: 1.7;
-    --bs-border-radius: 0.5rem;
+    --bs-border-radius: 0.75rem;
+
+    color: var(--dark);
 }
 
-.bg-light {
-    background-color: var(--light) !important;
+/* Apply subtle green-tinted off-white and off-black to page background and text */
+body {
+    background-color: var(--light);
+    color: var(--dark);
 }
 
 .box-shadow {
@@ -29,14 +41,14 @@ h1, h2, h3, h4, h5, h6, .lead {
     font-family: 'Noto Sans', sans-serif;
 }
 
+p, li, a {
+    font-family: 'Newsreader', serif;
+}
+
 /* Newsreader font not vertically centered - slight vertical adjustment for buttons */
 a.btn {
     padding-top: calc(var(--bs-btn-padding-y) + 0.15rem);
-}
-
-p, li, a {
     --bs-btn-font-family: 'Newsreader', serif !important;
-    font-family: 'Newsreader', serif;
 }
 
 /* Utility Classes for Overriding Font */ 
@@ -64,29 +76,65 @@ ul.clean-list li::before {
     content: "•";
     position: absolute;
     left: 0;
-    color: var(--blue);
+    color: var(--md-dark);
     font-weight: 800;
 }
 
 /* Navbar Styling */
+.navbar {
+    border-bottom: 1px solid var(--shadow);
+    background-color: var(--md-light)
+}
+
 .navbar-brand a {
     color: inherit; text-decoration: none;
 }
 
-/* Button Styling */
+/* Button Styling Options */
+body {
+    --bs-primary: var(--accent) !important;
+    --bs-secondary: hsl(10, 70%, 50%) !important;
+    --fill: var(--light);
+    --outline: var(--dark);
+}
+
+
+.btn-outline-primary {
+    --fill: var(--bs-primary);
+    --outline: var(--light);
+}
+
+.btn-primary {
+    --fill: var(--light);
+    --outline: var(--bs-primary);
+}
+
 .btn-outline-secondary {
-    --bs-btn-color: var(--accent);
-    --bs-btn-border-color: var(--accent);
-    --bs-btn-hover-bg: var(--accent);
-    --bs-btn-hover-border-color: var(--accent);
-    --bs-btn-active-bg: var(--accent);
-    --bs-btn-active-border-color: var(--accent);
+    --fill: var(--bs-secondary);
+    --outline: var(--light);
+}
+
+.btn-secondary {
+    --fill: var(--light);
+    --outline: var(--bs-secondary);
+}
+
+.btn {
+    --bs-btn-color: var(--fill);
+    --bs-btn-bg: var(--outline);
+    --bs-btn-border-color: var(--fill);
+    --bs-btn-hover-color: var(--outline);
+    --bs-btn-hover-bg: var(--fill);
+    --bs-btn-hover-border-color: var(--outline);
+    --bs-btn-active-color: var(--outline);
+    --bs-btn-active-bg: var(--fill);
+    --bs-btn-active-border-color: var(--outline);
 }
 
 /* Card Flipping */
 
 .flip-card {
-    perspective: 5000px;
+    perspective: 500px;
 }
 
 .card-inner {
@@ -133,6 +181,37 @@ ul.clean-list li::before {
 
 .aspect-4x3 {
     aspect-ratio: 4 / 3;
+}
+
+/* Services grid: responsive equal-height cards with gaps */
+.services-grid {
+    justify-content: center;
+    display: inline-grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; /* visible gaps between cards */
+    align-items: stretch; /* ensures items stretch to equal height */
+}
+
+.card {
+    transition: transform 200ms ease;
+    min-height: 220px;
+    border: 1px solid var(--shadow);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+/* Small utilities to increase vibrancy when needed */
+.accent-bg {
+    /* stronger tint so accent panels read more clearly against the very light page bg */
+    background: linear-gradient(135deg, rgba(20,140,90,0.10), rgba(20,140,90,0.04));
+    border-radius: calc(var(--bs-border-radius) - 0.15rem);
+    border: 1px solid rgba(20,140,90,0.04);
+}
+
+.bg-md-light {
+    background-color: var(--md-light) !important;
 }
 
 .spread-list {
